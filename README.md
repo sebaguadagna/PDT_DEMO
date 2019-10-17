@@ -1,7 +1,7 @@
 ## Sobre PDT_DEMO ##
 ---
 La idea es tener una primer implementación del mapeo relaciona con el modelo de la base que diseñamos y entregamos. En este back-end si se fijan en la tabla usuario van a observar el uso de enumerados y para qué sirven utilizandolo desde el cliente. Usamos enumerados cuando los atributos son pocos y categóricos, sexo, estados usuarios, departamentos, si o no, etc. Para no complicarla en un principio deje el enumerado directamente como atributo en la entidad usuario, si bien tengo la lógica en este mismo repo para normalizar el campo de enumerados (lo hablamos en clase con bernardo profe y nos dio el ok, al igual que Sergio) deje comentado (//) en el código esa relación FK con una tabla que normalice los enumerados. 
-## Requerimientos para el back-end ##
+## Requerimiento, descripción del back-end ##
 ---
 Emepece este proyecto con wildfly 10 como requerimiento, y básicamente el back end cuenta con cuatro paquetes: 
 
