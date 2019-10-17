@@ -16,7 +16,7 @@ En el tercero un clase para las excepciones.
 Y el cuarto paquete una pequeña implementación como servicio para la entidad usuario, básicamente una ABM para usuario.
 ## Requerimientos para el cliente ##
 * Cliente de wildfly 10 (JAR)
-* Jar de hibernate core para tener todas las funcionalidades del entity manager en el cliente. 
+* Jar de hibernate core [Descargalo](https://drive.google.com/file/d/1VgScJ7MsNEfzXmxWYGRG8cNyatuT-nb-/view?usp=sharing)  para tener todas las funcionalidades del entity manager en el cliente. 
 
 El cliente básicamente prueba un Alta de usuario, pero es muy facil implementar la baja lógica y una actualización, lo voy a estar subiendo seguramente el 18 de octubre. 
 
