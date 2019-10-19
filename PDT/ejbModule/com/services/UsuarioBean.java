@@ -63,7 +63,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 				.setParameter("e", email);
 		return query.getResultList();
 		} catch (PersistenceException e) {
-			throw new ServiciosException("No se puedo encontrar al usuario por el correo " + email);
+			throw new ServiciosException("No se pudo encontrar al usuario por el correo " + email);
 		}
 	}
 
@@ -73,20 +73,19 @@ public class UsuarioBean implements UsuarioBeanRemote {
 		Usuario user = em.find(Usuario.class, pk);
 		return user;
 		} catch(PersistenceException e) {
-			throw new ServiciosException("No se puedo encontrar al usuario");
+			throw new ServiciosException("No hay ningun usuario asociado a esa PK en la tabla" + pk);
 		}
 	}
 
-
-
-	/*@Override
-	public void findForMerge(Long pk) throws ServiciosException {
-		Usuario user = em.find(Usuario.class, pk);
-		user.setRol(TUsuarios.ADMINISTRADOR);
-		em.merge(user);
-		em.flush();
-	}*/
-    
+	@Override
+	public List<Usuario> obtenerTodosLosUsuarios() throws ServiciosException {
+		
+		try {
+			TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
+			return query.getResultList();
+			} catch (PersistenceException e) {
+				throw new ServiciosException("No se pudo realizar la consula");
+			}
+	}    
 	
-   
 }

@@ -18,9 +18,9 @@ public class EstadoUsuario implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "seqEstadoUsuario", allocationSize=10,initialValue=30, sequenceName="SEQ_ID_ESTADO_USUARIO")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqEstadoUsuario")
 	private Long id_estado_usuario;
 	
 	@Column(length = 40, nullable = false)

@@ -1,5 +1,6 @@
 package com.services;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -15,6 +16,7 @@ public interface UsuarioBeanRemote {
 	void modificarUsuario(Usuario usuario) throws ServiciosException;
 	List<Usuario> obtenerPorUsername(String username) throws ServiciosException;
 	Usuario findForMerge (Long pk) throws ServiciosException;
-	
+	List<Usuario> obtenerTodosLosUsuarios() throws ServiciosException;
+
 	
 }
