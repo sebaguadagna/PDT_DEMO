@@ -27,9 +27,9 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqUsuario")
 	private Long id_usuario;
 	
-	//@ManyToOne
-	//@JoinColumn(foreignKey=@ForeignKey(name="fk_tipo_usuario"))
-	//private TipoUsuario rol;
+//	@ManyToOne
+//	@JoinColumn(foreignKey=@ForeignKey(name="fk_tipo_usuario"))
+//	private TipoUsuario rol;
 	@Column(length = 40)
 	@Enumerated(value = EnumType.STRING)
 	private TUsuarios rol;

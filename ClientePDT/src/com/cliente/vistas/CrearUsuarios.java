@@ -10,7 +10,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
+import com.cliente.utils.Inspirate;
 import com.cliente.utils.PipelineUsuarioBean;
 import com.entities.Usuario;
 import com.enumerados.CDocumento;
@@ -39,6 +41,8 @@ public class CrearUsuarios {
 	/**
 	 * Launch the application.
 	 */
+	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -131,15 +135,24 @@ public class CrearUsuarios {
 			public void mouseClicked(MouseEvent arg0) {
 				
 				Component[] componentes = frame.getContentPane().getComponents();
-				
-	
+				String mvi = "No deben quedar campos vacios, por favor verifique que ingresó todos los datos solicitados";
+				Inspirate mFormat = new Inspirate(mvi);
+				JLabel messageVacio = mFormat.getMessageJLabelFormat();
+				messageVacio.setHorizontalAlignment(SwingConstants.CENTER);
 				for(Component c: componentes) {
 					if(c instanceof JTextField && ((JTextField) c).getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "No deben quedar campos vacios, por favor verifique que ingreso todos los datos solicitados");
+						JOptionPane.showMessageDialog(null, messageVacio,"Atención", JOptionPane.INFORMATION_MESSAGE);
 						return;
 					}
 				}
-				
+				String mei = "Por favor verifique que el formato del email es el correcto";
+				Inspirate meiFormat = new Inspirate(mei);
+				JLabel messageEmail = meiFormat.getMessageJLabelFormat();
+				messageEmail.setHorizontalAlignment(SwingConstants.CENTER);
+				if(!tfEmail.getText().matches(Inspirate.EMAIL_PATTERN)) {
+					JOptionPane.showMessageDialog(null, messageEmail,"Atención", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
 				
 				try {
 					PipelineUsuarioBean userBD = new PipelineUsuarioBean();
@@ -160,7 +173,10 @@ public class CrearUsuarios {
 					user.setUsername(tfUsername.getText());
 					user.setPassword(tfPassword.getText());
 					userBD.getQuery().altaUsuario(user);
-					JOptionPane.showMessageDialog(null, "Operacion Exitosa, el usuario: " + user.getUsername() + " fue creado!");
+					String uok = "Operación exitosa, el usuario: "  + user.getUsername() + " fue creado!";
+					Inspirate uokFormat = new Inspirate(uok);
+					JLabel messageUsuarioOk =  uokFormat.getMessageJLabelFormat();
+					JOptionPane.showMessageDialog(null, messageUsuarioOk,"Atención", JOptionPane.OK_OPTION);
 					for(Component c: componentes) {
 						if(c instanceof JTextField) {
 							((JTextField) c).setText("");
@@ -169,14 +185,26 @@ public class CrearUsuarios {
 
 					
 				} catch (NamingException | ServiciosException e) {
-					// TODO Auto-generated catch block
+					String em = e.getMessage();
+					Inspirate emFormat = new Inspirate(em);
+					JLabel messageUserError = emFormat.getMessageJLabelFormat();
+					messageVacio.setHorizontalAlignment(SwingConstants.CENTER);
+					JOptionPane.showMessageDialog(null, messageUserError, "Error", JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
+				
 				}
 				
 			}
 		});
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			       frame.dispose();
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

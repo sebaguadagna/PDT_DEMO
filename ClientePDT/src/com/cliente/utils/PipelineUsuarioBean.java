@@ -14,6 +14,7 @@ public class PipelineUsuarioBean {
 				InitialContext.doLookup("PDT/UsuarioBean!com.services.UsuarioBeanRemote");
 		}
 
+
 	public UsuarioBeanRemote getQuery() {
 		return query;
 	}
