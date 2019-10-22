@@ -3,9 +3,7 @@ package com.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import com.enumerados.CDocumento;
-import com.enumerados.EUsuario;
-import com.enumerados.TUsuarios;
+
 
 /**
  * Entity implementation class for Entity: UsuarioPDT
@@ -14,7 +12,7 @@ import com.enumerados.TUsuarios;
 @Entity
 @Table(name = "USUARIOS", uniqueConstraints = {
 		@UniqueConstraint(name="uk_username", columnNames= {"username"}),
-		@UniqueConstraint(name="uk_documento", columnNames= {"documento","doc"}),
+		@UniqueConstraint(name="uk_documento", columnNames= {"documento"}),
 		@UniqueConstraint(name="uk_email", columnNames= {"email"})
 		})
 public class Usuario implements Serializable {
@@ -23,24 +21,18 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "seqUsuario", allocationSize=20,initialValue=100, sequenceName="SEQ_ID_USUARIO")
+	@SequenceGenerator(name = "seqUsuario", initialValue=1000, sequenceName="SEQ_ID_USUARIO")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqUsuario")
 	private Long id_usuario;
 	
-//	@ManyToOne
-//	@JoinColumn(foreignKey=@ForeignKey(name="fk_tipo_usuario"))
-//	private TipoUsuario rol;
-	@Column(length = 40)
-	@Enumerated(value = EnumType.STRING)
-	private TUsuarios rol;
-	
-	//@ManyToOne
-	//@JoinColumn(foreignKey=@ForeignKey(name="fk_estado_usuario"))
-	//private EstadoUsuario estado;
-	@Column(length = 40)
-	@Enumerated(value = EnumType.STRING)
-	private EUsuario estado;
-	
+	@ManyToOne
+	@JoinColumn(foreignKey=@ForeignKey(name="fk_tipo_usuario"))
+	private TipoUsuario rol;
+
+	@ManyToOne
+	@JoinColumn(foreignKey=@ForeignKey(name="fk_estado_usuario"))
+	private EstadoUsuario estado;
+
 	@Column(length = 40, nullable = false)
 	private String username;
 	
@@ -53,12 +45,9 @@ public class Usuario implements Serializable {
 	@Column(length = 40, nullable = false)
 	private String direccion;
 	
-	//@ManyToOne
-	//@JoinColumn(foreignKey=@ForeignKey(name="fk_d_c_usuarios"))
-	//private DocumentoCategoria doc;
-	@Column(length = 40)
-	@Enumerated(value = EnumType.STRING)
-	private CDocumento doc;
+	@ManyToOne
+	@JoinColumn(foreignKey=@ForeignKey(name="fk_d_c_usuarios"))
+	private DocumentoCategoria doc;
 	
 	@Column(length = 40, nullable = false)
 	private String documento;
@@ -68,6 +57,7 @@ public class Usuario implements Serializable {
 	
 	@Column(length = 40, nullable = false)
 	private String password;
+
 
 	public Long getId_usuario() {
 		return id_usuario;
@@ -134,31 +124,29 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	public TUsuarios getRol() {
+	public TipoUsuario getRol() {
 		return rol;
 	}
 
-	public void setRol(TUsuarios rol) {
+	public void setRol(TipoUsuario rol) {
 		this.rol = rol;
 	}
 
-	public EUsuario getEstado() {
+	public EstadoUsuario getEstado() {
 		return estado;
 	}
 
-	public void setEstado(EUsuario estado) {
+	public void setEstado(EstadoUsuario estado) {
 		this.estado = estado;
 	}
 
-	public CDocumento getDoc() {
+	public DocumentoCategoria getDoc() {
 		return doc;
 	}
 
-	public void setDoc(CDocumento doc) {
+	public void setDoc(DocumentoCategoria doc) {
 		this.doc = doc;
 	}
-
-
 	
    
 }

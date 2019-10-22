@@ -9,6 +9,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import com.entities.EstadoUsuario;
+import com.enumerados.EUsuario;
 import com.exception.ServiciosException;
 
 /**
@@ -33,7 +34,7 @@ public class EstadoUsuarioBean implements EstadoUsuarioBeanRemote {
 			em.persist(estado);
 			em.flush();
 		} catch (PersistenceException e) {
-			throw new ServiciosException("No se pudo dar de alta el usuario");
+			throw new ServiciosException("No se pudo dar de alta el estado");
 		}
 		
 	}
@@ -60,10 +61,12 @@ public class EstadoUsuarioBean implements EstadoUsuarioBeanRemote {
 		
 	}
 
+	//Cuando enumeramos una entidad y queremos lanzar una query con la libreria de hibernate para SQL si o si tenemos que pasar como paramentro 
+	//el enumerado
 	@Override
-	public List<EstadoUsuario> obtenerPorEstado(String estado) throws ServiciosException {
+	public List<EstadoUsuario> obtenerPorEstado(EUsuario estado) throws ServiciosException {
 		try {
-			TypedQuery<EstadoUsuario> query = em.createQuery("SELECT e FROM EstadoUsuario e WHERE e.estado = :e", EstadoUsuario.class)
+			TypedQuery<EstadoUsuario> query = em.createQuery("SELECT e FROM EstadoUsuario e WHERE e.estadoNombre = :e", EstadoUsuario.class)
 					.setParameter("e", estado);
 			return query.getResultList();
 			} catch (PersistenceException e) {
@@ -72,12 +75,24 @@ public class EstadoUsuarioBean implements EstadoUsuarioBeanRemote {
 	}
 
 	@Override
-	public EstadoUsuario findForMerge(Long pk) throws ServiciosException {
+	public EstadoUsuario findForMerge(int pk) throws ServiciosException {
 		try {
 			EstadoUsuario estado = em.find(EstadoUsuario.class, pk);
 			return estado;
 			} catch(PersistenceException e) {
 				throw new ServiciosException("No hay ningun estado asociado a esa PK en la tabla" + pk);
+			}
+	}
+
+
+
+	@Override
+	public List<EstadoUsuario> obtenerTodos() throws ServiciosException {
+		try {
+			TypedQuery<EstadoUsuario> query = em.createQuery("SELECT e FROM EstadoUsuario e", EstadoUsuario.class);
+			return query.getResultList();
+			} catch (PersistenceException e) {
+				throw new ServiciosException(e.getMessage());
 			}
 	}
     

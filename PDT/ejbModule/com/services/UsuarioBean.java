@@ -7,6 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
+
+import com.entities.DocumentoCategoria;
+import com.entities.EstadoUsuario;
+import com.entities.TipoUsuario;
 import com.entities.Usuario;
 import com.exception.ServiciosException;
 
@@ -25,12 +29,26 @@ public class UsuarioBean implements UsuarioBeanRemote {
     }
 
 	@Override
-	public void altaUsuario(Usuario usuario) throws ServiciosException {
+	public void altaUsuario(String nombre, String apellido, String direccion, int dcPK, String documento, String email, int estadoPK,
+			int rolPK, String username, String password) throws ServiciosException {
 		try {
-			em.persist(usuario);
+			
+			
+			Usuario user = new Usuario();
+			user.setNombre(nombre);
+			user.setApellido(apellido);
+			user.setDireccion(direccion);
+			user.setDoc(em.find(DocumentoCategoria.class, dcPK));           
+			user.setDocumento(documento);
+			user.setEmail(email);
+			user.setEstado(em.find(EstadoUsuario.class, estadoPK));  
+			user.setRol(em.find(TipoUsuario.class, rolPK));   
+			user.setUsername(username);
+			user.setPassword(password);
+			em.persist(user);
 			em.flush();
 		} catch (PersistenceException e) {
-			throw new ServiciosException("No se pudo dar de alta el usuario");
+			throw new ServiciosException(e.getMessage());
 		}
 	}
 

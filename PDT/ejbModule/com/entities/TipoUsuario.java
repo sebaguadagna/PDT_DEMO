@@ -20,18 +20,20 @@ public class TipoUsuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id_tipo_usuario;
+	@SequenceGenerator(name = "seqTipoUsuario", initialValue=1000, sequenceName="SEQ_ID_TIPO_USUARIO")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqTipoUsuario")
+	private int id_tipo_usuario;
 	
 	@Column(length = 40, nullable = false)
 	@Enumerated(value = EnumType.STRING)
 	private TUsuarios rol;
 
-	public Long getId_tipo_usuario() {
+
+	public int getId_tipo_usuario() {
 		return id_tipo_usuario;
 	}
 
-	public void setId_tipo_usuario(Long id_tipo_usuario) {
+	public void setId_tipo_usuario(int id_tipo_usuario) {
 		this.id_tipo_usuario = id_tipo_usuario;
 	}
 

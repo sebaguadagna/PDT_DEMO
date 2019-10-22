@@ -19,8 +19,9 @@ public class Departamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id_departamento;
+	@SequenceGenerator(name = "seqDepartamento", initialValue=500, sequenceName="SEQ_ID_DEPARTAMENTO")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqDepartamento")
+	private int id_departamento;
 	
 	@Column(nullable = false)
 	private int codigo;
@@ -33,11 +34,11 @@ public class Departamento implements Serializable {
 	@JoinColumn(foreignKey=@ForeignKey(name="fk_zona_departamento"))
 	private Zona zona;
 
-	public Long getId_departamento() {
+	public int getId_departamento() {
 		return id_departamento;
 	}
 
-	public void setId_departamento(Long id_departamento) {
+	public void setId_departamento(int id_departamento) {
 		this.id_departamento = id_departamento;
 	}
 

@@ -77,9 +77,9 @@ public class ListarUsuarios {
 					DefaultTableModel model = new DefaultTableModel(null, columnas);
 					
 					for (Usuario u : userTable.getQuery().obtenerTodosLosUsuarios()) {
-						model.addRow(new Object[]{u.getId_usuario(), u.getRol(),
-								u.getEstado(), u.getUsername(), u.getNombre(), u.getApellido(), 
-								u.getDireccion(), u.getDoc(), u.getDocumento(), u.getEmail(),
+						model.addRow(new Object[]{u.getId_usuario(), u.getRol().getRol().toString(),
+								u.getEstado().getEstadoNombre().toString(), u.getUsername(), u.getNombre(), u.getApellido(), 
+								u.getDireccion(), u.getDoc().getCategoriaNombre().toString(), u.getDocumento(), u.getEmail(),
 								u.getPassword()});
 					}
 					
