@@ -38,7 +38,7 @@ public class DocumentoCategoriaBean implements DocumentoCategoriaBeanRemote {
 	@Override
 	public void bajaDocumentoCategoria(DocumentoCategoria categoria) throws ServiciosException {
 		try {
-			em.merge(categoria);
+			em.remove(categoria);
 			em.flush();
 		} catch (PersistenceException e) {
 			throw new ServiciosException("No se pudo dar de baja la categoria");
