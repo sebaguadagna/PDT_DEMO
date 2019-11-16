@@ -12,11 +12,11 @@ import com.exception.ServiciosException;
 public interface ZonaBeanRemote {
 
 	void altaZona(Zona categoria) throws ServiciosException;
-	void bajaZona(Long pk) throws ServiciosException;
+	void bajaZona(int pk) throws ServiciosException;
 	void modificarZona(Zona categoria) throws ServiciosException;
 	List<Zona> obtenerPorCategoria(CZonas zonaEnum) throws ServiciosException;
 	List<Zona> obtenerTodos() throws ServiciosException;
-	Zona findForMerge(Long pk) throws ServiciosException;
+	Zona findForMerge(int pk) throws ServiciosException;
 	
 	
 }

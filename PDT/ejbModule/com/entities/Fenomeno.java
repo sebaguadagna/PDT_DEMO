@@ -3,7 +3,6 @@ package com.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import com.enumerados.CFenomeno;
 
 /**
  * Entity implementation class for Entity: Fenomeno
@@ -11,8 +10,7 @@ import com.enumerados.CFenomeno;
  */
 @Entity
 @Table(name = "FENOMENOS", uniqueConstraints = {
-		@UniqueConstraint(name="uk_codigo_fenomeno", columnNames= {"codigo"}),
-		@UniqueConstraint(name="uk_nombre_fenomeno", columnNames= {"nombre"})
+		@UniqueConstraint(name="uk_codigo_fenomeno", columnNames= {"codigo"})
 		})
 
 public class Fenomeno implements Serializable {
@@ -26,17 +24,16 @@ public class Fenomeno implements Serializable {
 	private int id_fenomeno;
 	
 	@Column(nullable = false)
-	private  int codigo;
+	private  String codigo;
 	
-	@Column(length = 40, nullable = false)
-	@Enumerated(value = EnumType.STRING)
-	private  CFenomeno nombre;
+	@Column(length = 80, nullable = false)
+	private  String nombre;
 	
 	@Column(length = 40)
 	private  String telefono;
 	
 	@Column(length = 100)
-	private  int descripcion;
+	private  String descripcion;
 
 	public int getId_fenomeno() {
 		return id_fenomeno;
@@ -46,19 +43,20 @@ public class Fenomeno implements Serializable {
 		this.id_fenomeno = id_fenomeno;
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
-	public CFenomeno getNombre() {
+
+	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(CFenomeno nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
@@ -70,11 +68,11 @@ public class Fenomeno implements Serializable {
 		this.telefono = telefono;
 	}
 
-	public int getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
 
-	public void setDescripcion(int descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 

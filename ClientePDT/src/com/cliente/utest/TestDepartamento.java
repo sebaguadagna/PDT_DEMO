@@ -25,26 +25,34 @@ public class TestDepartamento {
 		Departamento nombre = new Departamento();
 		
 		//DAR DE ALTA DEPARTAMENTOS
-		int  i = 1;
+		String  codigo = "DPTO";
+		int valor = 1;
 		for(NDepartamentos denum:NDepartamentos.values()) {
 			nombre.setNombre(denum);
-			nombre.setCodigo(i);
+			nombre.setCodigo(codigo + valor);
+			valor ++;
 			departamentoQuery.getQuery().altaDepartamento(nombre);
-			i++;
 		}
 		
+//		
+//		//MODIFICAR UN DEPARTAMENTO
+//		List<Departamento> d = departamentoQuery.getQuery().obtenerPorNombre(NDepartamentos.DURAZNO);
+//		nombre = departamentoQuery.getQuery().findForMerge(d.get(0).getId_departamento());
+//		List<Zona> z = zonaQuery.getQuery().obtenerPorCategoria(CZonas.CENTRO_SUR);
+//		departamentoQuery.getQuery().modificarDepartamentoZona(nombre, z.get(0).getId_zona());
+//		
+//		
+//		//BAJAR DEPARTAMENTO
+//		List<Departamento> d2 = departamentoQuery.getQuery().obtenerPorNombre(NDepartamentos.MONTEVIDEO);
+//		departamentoQuery.getQuery().bajaDepartamento(d2.get(0).getId_departamento());
+//		
+//	
+
 		
-		//MODIFICAR UN DEPARTAMENTO
-		List<Departamento> d = departamentoQuery.getQuery().obtenerPorNombre(NDepartamentos.DURAZNO);
-		nombre = departamentoQuery.getQuery().findForMerge(d.get(0).getId_departamento());
-		List<Zona> z = zonaQuery.getQuery().obtenerPorCategoria(CZonas.CENTRO_SUR);
-		departamentoQuery.getQuery().modificarDepartamentoZona(nombre, z.get(0).getId_zona());
-		
-		
-		//BAJAR DEPARTAMENTO
-		List<Departamento> d2 = departamentoQuery.getQuery().obtenerPorNombre(NDepartamentos.MONTEVIDEO);
-		departamentoQuery.getQuery().bajaDepartamento(d2.get(0).getId_departamento());
+//		//ZONA ES FK EN LA TABLA DEPARTAMENTO
+//		PipelineDepartamentoBean departamentoQuery = new PipelineDepartamentoBean();
+//		List<Departamento> d = departamentoQuery.getQuery().obtenerPoZona(CZonas.CENTRO_SUR);
+//		System.out.print(d.get(0).getNombre());
 		
 	}
-
 }

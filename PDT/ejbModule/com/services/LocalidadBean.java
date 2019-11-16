@@ -37,7 +37,7 @@ public class LocalidadBean implements LocalidadBeanRemote {
 	}
 
 	@Override
-	public void bajaLocalidad(Long pk) throws ServiciosException {
+	public void bajaLocalidad(int pk) throws ServiciosException {
 
 		try {
 			Localidad l = em.find(Localidad.class, pk);
@@ -74,12 +74,24 @@ public class LocalidadBean implements LocalidadBeanRemote {
 	}
 
 	@Override
-	public Localidad findForMerge(Long pk) throws ServiciosException {
+	public Localidad findForMerge(int pk) throws ServiciosException {
 		try {
 			Localidad nombre = em.find(Localidad.class, pk);
 			return nombre;
 			} catch(PersistenceException e) {
 				throw new ServiciosException("No se puede encontrar la localidad" + e.getMessage());
+			}
+	}
+
+	@Override
+	public List<Localidad> obtenerLocalidadesPorPk(NDepartamentos departamentoEnum, String lc) throws ServiciosException {
+		try {
+			TypedQuery<Localidad> query = em.createQuery("SELECT l FROM Localidad l WHERE l.nombre = :s AND l.departamento.nombre = :d", Localidad.class)
+					.setParameter("d", departamentoEnum)
+					.setParameter("s", lc);
+			return query.getResultList();
+			} catch (PersistenceException e) {
+				throw new ServiciosException("No se pudo encontrar las localidades: " + e.getMessage());
 			}
 	}
 

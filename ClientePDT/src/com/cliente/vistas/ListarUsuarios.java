@@ -60,7 +60,7 @@ public class ListarUsuarios {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1180, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		String columnas [] = {"ID_USUARIO", "ROL",
 				"ESTADO", "USERNAME", "NOMBRE", "APELLIDO", "DIRECCION", "DOC", "DOCUMENTO", "EMAIL", 

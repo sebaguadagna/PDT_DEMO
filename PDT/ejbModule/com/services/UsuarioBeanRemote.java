@@ -12,8 +12,8 @@ public interface UsuarioBeanRemote {
 
 	void altaUsuario(String nombre, String Apellido, String direccion, int dcPK, String documento, String email,
 			int estado, int rolPK, String username, String password) throws ServiciosException;
-	void bajaUsuario(Usuario usuario) throws ServiciosException;
-	void modificarUsuario(Usuario usuario) throws ServiciosException;
+	void bajaUsuario(Usuario usuario, int estadoPK) throws ServiciosException;
+	void modificarUsuario(Usuario usuario, int estadoPK) throws ServiciosException;
 	List<Usuario> obtenerPorUsername(String username) throws ServiciosException;
 	Usuario findForMerge (Long pk) throws ServiciosException;
 	List<Usuario> obtenerTodosLosUsuarios() throws ServiciosException;

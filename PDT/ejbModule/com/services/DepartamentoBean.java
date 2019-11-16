@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import com.entities.Departamento;
 import com.entities.Zona;
+import com.enumerados.CZonas;
 import com.enumerados.NDepartamentos;
 import com.exception.ServiciosException;
 
@@ -37,7 +38,7 @@ public class DepartamentoBean implements DepartamentoBeanRemote {
 	}
 
 	@Override
-	public void altaDepartamento(Departamento nombre, Long zonaPK) throws ServiciosException {
+	public void altaDepartamento(Departamento nombre, int zonaPK) throws ServiciosException {
 		
 		try {
 			nombre.setZona(em.find(Zona.class, zonaPK));
@@ -62,7 +63,7 @@ public class DepartamentoBean implements DepartamentoBeanRemote {
 	}
 
 	@Override
-	public void modificarDepartamentoZona(Departamento d, Long pkZona) throws ServiciosException {
+	public void modificarDepartamentoZona(Departamento d, int pkZona) throws ServiciosException {
 		
 		try {
 			d.setZona(em.find(Zona.class, pkZona));
@@ -81,6 +82,17 @@ public class DepartamentoBean implements DepartamentoBeanRemote {
 			return query.getResultList();
 			} catch (PersistenceException e) {
 				throw new ServiciosException("No se pudo encontrar el departamento: " + departamentoEnum);
+			}
+	}
+	
+	@Override
+	public List<Departamento> obtenerPoZona(CZonas zona) throws ServiciosException {
+		try {
+			TypedQuery<Departamento> query = em.createQuery("SELECT d FROM Departamento d WHERE d.zona.categoria = :n", Departamento.class)
+					.setParameter("n", zona);
+			return query.getResultList();
+			} catch (PersistenceException e) {
+				throw new ServiciosException("No se pudo encontrar el departamento: ");
 			}
 	}
 
@@ -103,5 +115,7 @@ public class DepartamentoBean implements DepartamentoBeanRemote {
 				throw new ServiciosException("No hay ningun departamento asociado a esa PK en la tabla" + pk);
 			}
 	}
+
+	
 
 }

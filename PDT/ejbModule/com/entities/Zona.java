@@ -20,18 +20,18 @@ public class Zona implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id_zona;
+	private int id_zona;
 	
 	@Column(length = 40, nullable = false)
 	@Enumerated(value = EnumType.STRING)
 	private CZonas categoria;
 
 
-	public Long getId_zona() {
+	public int getId_zona() {
 		return id_zona;
 	}
 
-	public void setId_zona(Long id_zona) {
+	public void setId_zona(int id_zona) {
 		this.id_zona = id_zona;
 	}
 

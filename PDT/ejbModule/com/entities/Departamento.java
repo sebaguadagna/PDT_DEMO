@@ -19,14 +19,14 @@ public class Departamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "seqDepartamento", initialValue=500, sequenceName="SEQ_ID_DEPARTAMENTO")
+	@SequenceGenerator(name = "seqDepartamento", initialValue=1, sequenceName="SEQ_ID_DEPARTAMENTO")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqDepartamento")
 	private int id_departamento;
 	
 	@Column(nullable = false)
-	private int codigo;
+	private String codigo;
 	
-	@Column(length = 40, nullable = false)
+	@Column(length = 100, nullable = false)
 	@Enumerated(value = EnumType.STRING)
 	private NDepartamentos nombre;
    
@@ -42,11 +42,11 @@ public class Departamento implements Serializable {
 		this.id_departamento = id_departamento;
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 

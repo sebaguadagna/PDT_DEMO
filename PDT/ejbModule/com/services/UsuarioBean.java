@@ -53,8 +53,9 @@ public class UsuarioBean implements UsuarioBeanRemote {
 	}
 
 	@Override
-	public void bajaUsuario(Usuario usuario) throws ServiciosException {
+	public void bajaUsuario(Usuario usuario,  int estadoPK) throws ServiciosException {
 		try {
+			usuario.setEstado(em.find(EstadoUsuario.class, estadoPK));
 			em.merge(usuario);
 			em.flush();
 		} catch (PersistenceException e) {
@@ -65,8 +66,9 @@ public class UsuarioBean implements UsuarioBeanRemote {
 	
 	//Priviamente a una modificacion hay que usar el metodo find
 	@Override
-	public void modificarUsuario(Usuario usuario) throws ServiciosException {
+	public void modificarUsuario(Usuario usuario,  int estadoPK) throws ServiciosException {
 		try {
+			usuario.setEstado(em.find(EstadoUsuario.class, estadoPK));
 			em.merge(usuario);
 			em.flush();
 		} catch (PersistenceException e) {

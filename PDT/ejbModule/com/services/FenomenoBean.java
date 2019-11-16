@@ -9,7 +9,6 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import com.entities.Fenomeno;
-import com.enumerados.CFenomeno;
 import com.exception.ServiciosException;
 
 
@@ -40,7 +39,7 @@ public class FenomenoBean implements FenomenoBeanRemote {
 			em.remove(f);
 			em.flush();
 		} catch (PersistenceException e) {
-			throw new ServiciosException("No se pudo dar de alta la categoria");
+			throw new ServiciosException("No se pudo dar de baja el fenomeno");
 		}
 		
 	}
@@ -57,13 +56,13 @@ public class FenomenoBean implements FenomenoBeanRemote {
 	}
 
 	@Override
-	public List<Fenomeno> obtenerPorNombre(CFenomeno fenomenoEnum) throws ServiciosException {
+	public List<Fenomeno> obtenerPorNombre(String descripcion) throws ServiciosException {
 		try {
 			TypedQuery<Fenomeno> query = em.createQuery("SELECT f FROM Fenomeno f WHERE f.nombre = :n", Fenomeno.class)
-					.setParameter("n", fenomenoEnum);
+					.setParameter("n", descripcion);
 			return query.getResultList();
 			} catch (PersistenceException e) {
-				throw new ServiciosException("No se pudo encontrar la categoria: " + fenomenoEnum);
+				throw new ServiciosException("No se pudo encontrar el fenomeno: " + descripcion);
 			}
 	}
 

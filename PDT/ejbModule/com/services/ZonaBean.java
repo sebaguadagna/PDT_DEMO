@@ -35,7 +35,7 @@ public class ZonaBean implements ZonaBeanRemote {
 	}
 
 	@Override
-	public void bajaZona(Long pk) throws ServiciosException {
+	public void bajaZona(int pk) throws ServiciosException {
 		try {
 			Zona z = em.find(Zona.class, pk);
 			em.remove(z);
@@ -81,7 +81,7 @@ public class ZonaBean implements ZonaBeanRemote {
 	}
 
 	@Override
-	public Zona findForMerge(Long pk) throws ServiciosException {
+	public Zona findForMerge(int pk) throws ServiciosException {
 		try {
 			Zona categoria = em.find(Zona.class, pk);
 			return categoria;

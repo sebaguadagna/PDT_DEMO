@@ -16,20 +16,21 @@ public class Localidad implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id_localidad;
+	private int id_localidad;
 	
 	@Column(nullable = false)
 	private String nombre;
+	
 	
 	@ManyToOne
 	@JoinColumn(foreignKey=@ForeignKey(name="fk_local_departamento"))
 	private Departamento departamento;
 
-	public Long getId_localidad() {
+	public int getId_localidad() {
 		return id_localidad;
 	}
 
-	public void setId_localidad(Long id_localidad) {
+	public void setId_localidad(int id_localidad) {
 		this.id_localidad = id_localidad;
 	}
 

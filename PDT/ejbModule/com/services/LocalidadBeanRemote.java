@@ -13,8 +13,9 @@ public interface LocalidadBeanRemote {
 
 	
 	void altaLocalidad(Localidad nombre) throws ServiciosException;
-	void bajaLocalidad(Long pk) throws ServiciosException;
+	void bajaLocalidad(int pk) throws ServiciosException;
 	void modificarLocalidadDepartamento(Localidad l, int pkDepartamento) throws ServiciosException;
 	List<Localidad> obtenerLocalidadesPorDepartamento(NDepartamentos departamentoEnum) throws ServiciosException;
-	Localidad findForMerge(Long pk) throws ServiciosException;
+	List<Localidad> obtenerLocalidadesPorPk(NDepartamentos departamentoEnum, String lc) throws ServiciosException;
+	Localidad findForMerge(int pk) throws ServiciosException;
 }
