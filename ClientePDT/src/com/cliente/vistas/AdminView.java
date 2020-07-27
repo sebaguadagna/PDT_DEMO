@@ -35,6 +35,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.JPasswordField;
 
 public class AdminView {
 
@@ -44,8 +45,9 @@ public class AdminView {
 	private JTextField documentoField;
 	private JTextField emailField;
 	private JTextField userNameField;
-	private JTextField passwordField;
 	private JTextField direccionField;
+	private JPasswordField passwordField;
+	private JPasswordField passwordField_2;
 
 	/**
 	 * Launch the application.
@@ -296,14 +298,6 @@ public class AdminView {
 		separatorUserName.setBounds(740, 286, 183, 2);
 		frame.getContentPane().add(separatorUserName);
 		
-		passwordField = new JTextField();
-		passwordField.setForeground(Color.DARK_GRAY);
-		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		passwordField.setColumns(10);
-		passwordField.setBorder(null);
-		passwordField.setBounds(740, 446, 169, 31);
-		frame.getContentPane().add(passwordField);
-		
 		JSeparator separatorPassword = new JSeparator();
 		separatorPassword.setBackground(new Color(102, 51, 204));
 		separatorPassword.setBounds(740, 477, 183, 2);
@@ -347,7 +341,7 @@ public class AdminView {
 				JLabel messageEmail = meiFormat.getMessageJLabelFormat();
 				messageEmail.setHorizontalAlignment(SwingConstants.CENTER);
 				if(!emailField.getText().matches(Inspirate.EMAIL_PATTERN)) {
-					JOptionPane.showMessageDialog(null, messageEmail,"AtenciÃ³n", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, messageEmail,"Atención", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
 				
@@ -427,8 +421,9 @@ public class AdminView {
 		lblSalir.setBounds(944, 56, 46, 14);
 		frame.getContentPane().add(lblSalir);
 		
-		
-		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(740, 440, 200, 39);
+		frame.getContentPane().add(passwordField);
 		
 		
 	}

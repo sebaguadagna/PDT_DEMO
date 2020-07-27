@@ -13,9 +13,11 @@ import javax.swing.JSeparator;
 import javax.naming.NamingException;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.JOptionPane;
 
 import com.cliente.utils.PipelineUsuarioBean;
 import com.entities.Usuario;
+import com.enumerados.EUsuario;
 import com.enumerados.TUsuarios;
 import com.exception.ServiciosException;
 
@@ -89,8 +91,8 @@ public class Login {
 					List<Usuario> userEmail = userEntity.getQuery().obtenerPorEmail(usernameField.getText());
 					
 					if(!userEmail.isEmpty()){
-						if (userEmail.get(0).getPasswd().equals(passwordField.getText())) {
-							
+						if (userEmail.get(0).getPasswd().equals(passwordField.getText())){
+							if (userEmail.get(0).getEstado().getEstado_valor().toString().equals(EUsuario.HABILITADO.toString())) {
 							String rol = userEmail.get(0).getRol().getRol().toString();
 							System.out.print("ESTE ES EL CORREO: " + userEmail.get(0).getEmail());
 							String email[]  = {userEmail.get(0).getEmail()};
@@ -104,14 +106,19 @@ public class Login {
 							  
 							  if(rol.equals(TUsuarios.VOLUNTARIO.toString())) { VoluntarioView.main(email);
 							  frame.dispose(); }
-
+							}else {
+								JOptionPane.showMessageDialog(null, "El usuario esta Deshabilitado");
+								System.out.print("El usuario esta deshabilitado");
+							}
 							 
 							
 						}else {
-							System.out.print("La contraseÃ±a es incorrecta");
+							System.out.print("La contraseña es incorrecta");
+							JOptionPane.showMessageDialog(null, "La contraseña no es correcta");
 						}
 					}else {
 						System.out.print("No se encontro ningun usuario con esa direccion de correo");
+						JOptionPane.showMessageDialog(null, "No se encontro ningun usuario con esa direccion de correo");
 						
 					}
 				} catch (NamingException | ServiciosException e) {
