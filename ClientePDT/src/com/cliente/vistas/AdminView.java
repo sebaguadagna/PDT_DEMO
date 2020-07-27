@@ -300,7 +300,7 @@ public class AdminView {
 		
 		JSeparator separatorPassword = new JSeparator();
 		separatorPassword.setBackground(new Color(102, 51, 204));
-		separatorPassword.setBounds(740, 477, 183, 2);
+		separatorPassword.setBounds(740, 479, 183, 2);
 		frame.getContentPane().add(separatorPassword);
 		
 		direccionField = new JTextField();
@@ -422,7 +422,11 @@ public class AdminView {
 		frame.getContentPane().add(lblSalir);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(740, 440, 200, 39);
+		passwordField.setForeground(Color.DARK_GRAY);
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		passwordField.setColumns(10);
+		passwordField.setBorder(null);
+		passwordField.setBounds(740, 440, 200, 34);
 		frame.getContentPane().add(passwordField);
 		
 		
