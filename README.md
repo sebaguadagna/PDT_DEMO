@@ -3,23 +3,23 @@
 ![Vista de login](https://github.com/sebaguadagna/PDT_DEMO/blob/master/forReadme/login.png)
 
 ---
-Proyecto para UTEC pdt
-En este back end (EJB) en la tabla usuario van a observar el uso de enumerados y para qué sirven utilizandolo desde el cliente. Usamos enumerados cuando los atributos son pocos y categóricos, sexo, estados usuarios, departamentos, si o no, etc. 
-Muchas de las FK en la entidad Usuario, son entidades con atributos enumerados, se trato de llegar a un nivel 2 de normalización de la represetnación del modelo en la base de datos.
+Proyecto para UTEC
+back-end (EJB) 
+Muchas de las FK en la entidad Usuario, son entidades con atributos enumerados, la bd fue llevada a la segunda forma normal de la represetnación del modelo.
 
 ## Requerimiento, descripción del back-end ##
 ---
-Comenzamos este proyecto con wildfly 10 como requerimiento, y básicamente el back end cuenta con cuatro paquetes: 
+Comenzamos este proyecto con wildfly 10 como requerimiento, el back-end cuenta con los siguientes paquetes: 
 
 * com.entities
 * com.enumerados
 * com.exception
 * com.services
 
-En el primero se encuentran declaradas casi todas las entidades (me quedan tres tablas), en un principio me parece lo mejor validar solo algunos casos de prueba y no todos, creo que en el PDT no se habla de probar todo para esta entrega. 
+En el primero se encuentran declaradas todas las entidades que vamos a estar ocupando.
 En el segundo paquete están los enumerados. 
-En el tercero un clase para las excepciones. 
-En el cuarto, ejb message beans con inyección al entitie manager, son de acceso a los DAOs
+En el tercero un clase especificametne para las excepciones. 
+En el cuarto, ejb message beans con inyección al entitie manager (son de acceso a los DAOs)
 ## Requerimientos para el cliente ##
 * Cliente de wildfly 10 (JAR)
 * Jar de hibernate core [Descargalo](https://drive.google.com/file/d/1VgScJ7MsNEfzXmxWYGRG8cNyatuT-nb-/view?usp=sharing)  para tener todas las funcionalidades del entity manager en el cliente. 
