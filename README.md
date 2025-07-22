@@ -3,7 +3,7 @@
 ![Vista de login](https://github.com/sebaguadagna/PDT_DEMO/blob/master/forReadme/login.png)
 
 ---
-Proyecto para UTEC de la materia PDT.
+Proyecto para UTEC pdt
 En este back end (EJB) en la tabla usuario van a observar el uso de enumerados y para qué sirven utilizandolo desde el cliente. Usamos enumerados cuando los atributos son pocos y categóricos, sexo, estados usuarios, departamentos, si o no, etc. 
 Muchas de las FK en la entidad Usuario, son entidades con atributos enumerados, se trato de llegar a un nivel 2 de normalización de la represetnación del modelo en la base de datos.
 
